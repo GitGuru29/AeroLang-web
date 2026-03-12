@@ -30,7 +30,7 @@ const navItems = [
   { label: "Examples", href: "#examples" },
   { label: "Playground", href: "#playground" },
   { label: "Ecosystem", href: "#ecosystem" },
-  { label: "GitHub", href: "https://github.com" },
+  { label: "GitHub", href: "https://github.com/GitGuru29/AeroLang_Demo.git" },
 ];
 
 const featureCards = [
@@ -436,7 +436,7 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
-                href="https://github.com"
+                href="https://github.com/GitGuru29/AeroLang_Demo.git"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-slate-950"
@@ -500,7 +500,7 @@ export default function Home() {
                   <div className="mt-4 flex flex-col gap-3 text-sm text-slate-300">
                     <a href="#roadmap">Roadmap</a>
                     <a href="#ecosystem">Ecosystem</a>
-                    <a href="https://github.com" target="_blank" rel="noreferrer">
+                    <a href="https://github.com/GitGuru29/AeroLang_Demo.git" target="_blank" rel="noreferrer">
                       GitHub
                     </a>
                     <a href="#community">Community</a>
