@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #02050c;
+  --bg-alt: #06101d;
+  --fg: #f8fbff;
+  --muted: #95a5bf;
+  --cyan: #46dfff;
+  --blue: #149cff;
+  --font-display: "Avenir Next", "Segoe UI", "Helvetica Neue", "Arial Nova", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(20, 156, 255, 0.16), transparent 26%),
+    radial-gradient(circle at 80% 20%, rgba(70, 223, 255, 0.12), transparent 18%),
+    linear-gradient(180deg, #02050c 0%, #050c16 46%, #030712 100%);
+  color: var(--fg);
+  font-family: var(--font-display);
+}
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  textarea,
+  input,
+  select,
+  [role="button"] {
+    cursor: none;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.section-shell {
+  @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+}
+
+.glass-panel {
+  @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-cyan/10 px-3 py-1 text-xs uppercase tracking-[0.25em] text-cyan;
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #9ddfff 65%, #57b7ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-mask {
+  background:
+    linear-gradient(180deg, rgba(2, 5, 12, 0.3) 0%, rgba(2, 5, 12, 0.85) 74%, #02050c 100%),
+    linear-gradient(90deg, rgba(2, 5, 12, 0.65) 0%, rgba(2, 5, 12, 0.12) 42%, rgba(2, 5, 12, 0.6) 100%);
+}
+
+.grid-overlay {
+  background-size: 42px 42px;
+}
+
+.noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px),
+    radial-gradient(circle at 35% 80%, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px),
+    radial-gradient(circle at 60% 65%, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.starfield-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+  background-repeat: repeat;
+  animation: star-pan 24s linear infinite;
+}
+
+.starfield-layer-far {
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 65% 40%, rgba(70, 223, 255, 0.5) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 35% 72%, rgba(255, 255, 255, 0.42) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.5px);
+  background-size: 320px 320px;
+}
+
+.starfield-layer-mid {
+  opacity: 0.3;
+  animation-duration: 34s;
+  animation-direction: reverse;
+  background-image:
+    radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.85) 0 1.2px, transparent 1.7px),
+    radial-gradient(circle at 44% 62%, rgba(70, 223, 255, 0.45) 0 1.2px, transparent 1.7px),
+    radial-gradient(circle at 78% 38%, rgba(255, 255, 255, 0.65) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 12% 84%, rgba(255, 255, 255, 0.4) 0 1px, transparent 1.5px);
+  background-size: 460px 460px;
+}
+
+.star-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 16px rgba(70, 223, 255, 0.32);
+  animation: star-twinkle ease-in-out infinite;
+}
+
+.cursor-orb {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.cursor-orb-ring {
+  position: absolute;
+  left: -16px;
+  top: -16px;
+  height: 32px;
+  width: 32px;
+  border-radius: 9999px;
+  border: 1px solid rgba(70, 223, 255, 0.55);
+  background: radial-gradient(circle, rgba(70, 223, 255, 0.06), transparent 70%);
+  box-shadow: 0 0 24px rgba(20, 156, 255, 0.18);
+}
+
+.cursor-orb-core {
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  height: 6px;
+  width: 6px;
+  border-radius: 9999px;
+  background: #b7f4ff;
+  box-shadow: 0 0 14px rgba(70, 223, 255, 0.55);
+}
+
+.card-glow:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(70, 223, 255, 0.24),
+    0 24px 80px rgba(7, 16, 28, 0.72),
+    0 0 44px rgba(20, 156, 255, 0.18);
+}
+
+::selection {
+  background: rgba(70, 223, 255, 0.22);
+}
+
+@keyframes star-pan {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-12px, 10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-orb {
+    display: none;
+  }
+}
