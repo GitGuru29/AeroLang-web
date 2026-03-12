@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const exampleSnippets = {
   hello: `module main
@@ -53,11 +53,49 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
   const [selectedExample, setSelectedExample] = useState<ExampleKey>("android");
   const [code, setCode] = useState<string>(exampleSnippets.android);
   const [status, setStatus] = useState<Status>("Compiler Ready");
+  const [shareState, setShareState] = useState<"idle" | "copied">("idle");
   const [output, setOutput] = useState<string[]>([
     "[compiler] AeroLang compiler ready",
     "[runtime] Waiting for execution",
   ]);
   const [activePanel, setActivePanel] = useState<Panel>("compile");
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    const encoded = hash.startsWith("#code=") ? hash.slice(6) : "";
+
+    if (!encoded) {
+      const storedCode = window.localStorage.getItem("aerolang-playground-code");
+      const storedExample = window.localStorage.getItem("aerolang-playground-example") as ExampleKey | null;
+
+      if (storedCode) {
+        setCode(storedCode);
+      }
+
+      if (storedExample && storedExample in exampleSnippets) {
+        setSelectedExample(storedExample);
+      }
+
+      return;
+    }
+
+    try {
+      const decoded = window.atob(encoded);
+
+      if (decoded.trim().length > 0) {
+        setCode(decoded);
+        setSelectedExample("hello");
+        setOutput(["[share] Loaded code from URL", "[runtime] Waiting for execution"]);
+      }
+    } catch {
+      setOutput(["[share] Failed to decode shared URL", "[runtime] Waiting for execution"]);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("aerolang-playground-code", code);
+    window.localStorage.setItem("aerolang-playground-example", selectedExample);
+  }, [code, selectedExample]);
 
   function handleLoadExample(key: ExampleKey) {
     setSelectedExample(key);
@@ -107,6 +145,27 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
     setOutput((current) => ["[clipboard] Source copied", ...current].slice(0, 6));
   }
 
+  async function handleShare() {
+    const shareUrl = `${window.location.origin}${window.location.pathname}#code=${window.btoa(code)}`;
+    await navigator.clipboard.writeText(shareUrl);
+    window.history.replaceState(null, "", `#code=${window.btoa(code)}`);
+    setShareState("copied");
+    setOutput((current) => ["[share] Share URL copied", ...current].slice(0, 6));
+    window.setTimeout(() => setShareState("idle"), 1400);
+  }
+
+  function handleExport() {
+    const blob = new Blob([code], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+
+    anchor.href = url;
+    anchor.download = `${selectedExample}.aero`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+    setOutput((current) => ["[export] Downloaded .aero file", ...current].slice(0, 6));
+  }
+
   const diagnostics = useMemo(() => {
     const lines = code.split("\n");
     const tokenCount = code
@@ -129,6 +188,9 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
         <div>
           <p className="text-sm uppercase tracking-[0.25em] text-cyan">AeroLang Playground</p>
           <p className="mt-2 text-sm text-slate-400">Serious editor workflow with compiler logs and runtime output.</p>
+          <p className="mt-2 text-xs uppercase tracking-[0.22em] text-slate-500">
+            Simulated runtime in-browser. Use the VS Code workflow for compiler-backed APK generation.
+          </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <button
@@ -151,6 +213,20 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
             className="rounded-full border border-cyan/20 bg-cyan/10 px-4 py-2 text-sm font-semibold text-cyan transition hover:border-cyan/40"
           >
             Copy
+          </button>
+          <button
+            type="button"
+            onClick={handleShare}
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-cyan/30"
+          >
+            {shareState === "copied" ? "URL Copied" : "Share"}
+          </button>
+          <button
+            type="button"
+            onClick={handleExport}
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-cyan/30"
+          >
+            Export .aero
           </button>
         </div>
       </div>
