@@ -174,6 +174,83 @@ a {
     0 0 44px rgba(20, 156, 255, 0.18);
 }
 
+.roadmap-root {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(70, 223, 255, 0.16),
+    0 36px 90px rgba(5, 14, 26, 0.58),
+    0 0 70px rgba(70, 223, 255, 0.12);
+}
+
+.roadmap-trunk {
+  position: absolute;
+  left: 50%;
+  top: -28px;
+  bottom: 0;
+  width: 4px;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background:
+    linear-gradient(180deg, rgba(111, 78, 55, 0.18) 0%, rgba(71, 46, 31, 0.55) 18%, rgba(45, 28, 18, 0.96) 100%);
+  box-shadow:
+    0 0 0 1px rgba(137, 91, 61, 0.25),
+    0 0 36px rgba(70, 223, 255, 0.08);
+}
+
+.roadmap-branch-card {
+  position: relative;
+}
+
+.roadmap-branch-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 auto;
+  height: 120px;
+  width: 120px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(70, 223, 255, 0.08), transparent 72%);
+  pointer-events: none;
+}
+
+.roadmap-branch {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  width: calc(50% - 2.5rem);
+  background: linear-gradient(90deg, rgba(69, 43, 28, 0.92), rgba(100, 69, 49, 0.6), rgba(70, 223, 255, 0.18));
+}
+
+.roadmap-branch::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  height: 12px;
+  width: 12px;
+  border-radius: 9999px;
+  background: #46dfff;
+  box-shadow: 0 0 18px rgba(70, 223, 255, 0.45);
+}
+
+.roadmap-branch-left {
+  right: calc(50% + 1rem);
+  transform-origin: right center;
+  transform: rotate(14deg);
+}
+
+.roadmap-branch-left::after {
+  right: -6px;
+}
+
+.roadmap-branch-right {
+  left: calc(50% + 1rem);
+  transform-origin: left center;
+  transform: rotate(-14deg);
+}
+
+.roadmap-branch-right::after {
+  left: -6px;
+}
+
 ::selection {
   background: rgba(70, 223, 255, 0.22);
 }
