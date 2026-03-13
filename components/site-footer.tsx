@@ -68,6 +68,9 @@ export function SiteFooter() {
               </div>
             </div>
           </div>
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs uppercase tracking-[0.2em] text-slate-500">
+            © 2026 AeroLang. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>
