@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { examples } from "@/app/site-data";
+import { examples, examplesRepoUrl } from "@/app/site-data";
 
 export const metadata: Metadata = {
   title: "Gallery - Real World Code Samples",
@@ -22,6 +22,16 @@ export default function ExamplesPage() {
             The gallery now includes concrete AeroLang examples and clearly labels roadmap-only material so the
             site does not blur available features with planned ones.
           </p>
+          <div className="mt-8">
+            <a
+              href={examplesRepoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex rounded-full border border-cyan/20 bg-cyan/10 px-5 py-3 text-sm font-semibold text-cyan transition hover:border-cyan/40"
+            >
+              View Sample Apps Repo
+            </a>
+          </div>
         </section>
 
         <section className="section-shell grid gap-6 pb-24 md:pb-32">

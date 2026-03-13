@@ -3,7 +3,7 @@ export const repoUrl = "https://github.com/GitGuru29/AeroLang_Demo.git";
 export const websiteRepoUrl = "https://github.com/GitGuru29/AeroLang-web.git";
 export const discussionsUrl = "https://github.com/GitGuru29/AeroLang_Demo/discussions";
 export const issuesUrl = "https://github.com/GitGuru29/AeroLang_Demo/issues";
-export const examplesRepoUrl = "https://github.com/GitGuru29/AeroLang_Demo/tree/main/examples";
+export const examplesRepoUrl = "https://github.com/GitGuru29/AeroLang-Examples.git";
 export const authorUrl = "https://silunadangalla.vercel.app/#/";
 
 export const primaryNav = [
