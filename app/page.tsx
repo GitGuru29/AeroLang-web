@@ -64,10 +64,10 @@ export default function Home() {
           <SiteHeader />
 
           <div className="section-shell relative z-10 py-14 md:py-16">
-            <div className="grid min-h-[calc(100vh-110px)] items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="max-w-3xl">
+            <div className="grid min-h-[calc(100vh-110px)] items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+              <div className="hero-copy max-w-3xl">
                 <span className="eyebrow">Experimental Android-native language</span>
-                <h1 className="mt-6 text-6xl font-medium tracking-[-0.06em] text-gradient sm:text-7xl md:text-8xl">
+                <h1 className="mt-6 text-5xl font-medium tracking-[-0.06em] text-gradient sm:text-7xl md:text-8xl">
                   AeroLang
                 </h1>
                 <p className="mt-4 text-xl font-medium text-slate-100 md:text-3xl">
@@ -97,7 +97,7 @@ export default function Home() {
                   </span>
                 </div>
 
-                <div className="mt-7 flex flex-col gap-4 sm:flex-row">
+                <div className="hero-actions mt-7 flex flex-col gap-4 sm:flex-row">
                   <Link
                     href="/docs"
                     className="rounded-full bg-cyan px-6 py-3 text-center text-sm font-semibold text-slate-950 transition hover:scale-[1.02] hover:bg-[#7ce9ff]"
