@@ -152,37 +152,49 @@ html.light .hero-copy {
 }
 
 html.light .hero-copy .eyebrow {
-  background: rgba(6, 16, 29, 0.34);
-  border-color: rgba(255, 255, 255, 0.16);
-  color: #d5f6ff;
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(15, 30, 52, 0.14);
+  color: #17324b;
 }
 
 html.light .hero-copy .text-slate-100 {
-  color: #f4f8ff !important;
+  color: #081423 !important;
 }
 
 html.light .hero-copy .text-slate-300 {
-  color: #d2dce8 !important;
+  color: #24384e !important;
 }
 
 html.light .hero-copy .text-slate-200 {
-  color: #ebf2fb !important;
+  color: #17324b !important;
 }
 
 html.light .hero-copy .bg-white\/\[0\.03\],
 html.light .hero-copy .bg-white\/\[0\.04\],
 html.light .hero-copy .bg-white\/5 {
-  background-color: rgba(255, 255, 255, 0.08) !important;
+  background-color: rgba(255, 255, 255, 0.28) !important;
 }
 
 html.light .hero-copy .border-white\/10,
 html.light .hero-copy .border-white\/12,
 html.light .hero-copy .border-white\/15 {
-  border-color: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(15, 30, 52, 0.14) !important;
 }
 
 html.light .hero-copy .text-emerald-300 {
   color: #0f766e !important;
+}
+
+html.light .hero-copy .text-white {
+  color: #081423 !important;
+}
+
+html.light .hero-copy .bg-cyan\/10 {
+  background-color: rgba(17, 126, 209, 0.12) !important;
+}
+
+html.light .hero-copy .text-cyan {
+  color: #0c5f9e !important;
 }
 
 html.light .noise::before {
