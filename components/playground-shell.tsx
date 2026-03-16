@@ -183,7 +183,7 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
   }, [code, selectedExample, status]);
 
   return (
-    <div className="glass-panel overflow-hidden rounded-[32px] border border-white/12 bg-[#06101d]/80 shadow-glow">
+    <div className="playground-shell glass-panel overflow-hidden rounded-[32px] border border-white/12 bg-[#06101d]/80 shadow-glow">
       <div className="flex flex-col gap-4 border-b border-white/10 px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <p className="text-sm uppercase tracking-[0.25em] text-cyan">AeroLang Playground</p>

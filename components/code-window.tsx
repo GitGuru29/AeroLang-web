@@ -55,7 +55,7 @@ export function CodeWindow() {
   }
 
   return (
-    <div className="glass-panel overflow-hidden rounded-[28px] border border-white/12 bg-[#06101d]/80 shadow-glow">
+    <div className="code-window glass-panel overflow-hidden rounded-[28px] border border-white/12 bg-[#06101d]/80 shadow-glow">
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="flex gap-2">
