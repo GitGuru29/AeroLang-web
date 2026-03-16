@@ -322,6 +322,7 @@ html.light .bg-\[\#08111f\],
 html.light .bg-\[\#08111f\]\/95,
 html.light .bg-\[\#06101d\]\/80,
 html.light .bg-\[\#030811\],
+html.light .bg-\[\#040a12\],
 html.light .bg-\[\#040b14\] {
   background-color: var(--surface-strong) !important;
 }
