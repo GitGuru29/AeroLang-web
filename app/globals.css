@@ -120,10 +120,18 @@ html.light .text-gradient {
     linear-gradient(90deg, rgba(2, 5, 12, 0.65) 0%, rgba(2, 5, 12, 0.12) 42%, rgba(2, 5, 12, 0.6) 100%);
 }
 
+.hero-image {
+  filter: saturate(1.02) brightness(0.92);
+}
+
+html.light .hero-image {
+  filter: saturate(1.08) brightness(1.03);
+}
+
 html.light .hero-mask {
   background:
-    linear-gradient(180deg, rgba(248, 251, 255, 0.58) 0%, rgba(248, 251, 255, 0.88) 74%, #eef5fb 100%),
-    linear-gradient(90deg, rgba(248, 251, 255, 0.82) 0%, rgba(248, 251, 255, 0.2) 42%, rgba(248, 251, 255, 0.72) 100%);
+    linear-gradient(180deg, rgba(248, 251, 255, 0.14) 0%, rgba(248, 251, 255, 0.28) 44%, rgba(238, 245, 251, 0.84) 100%),
+    linear-gradient(90deg, rgba(248, 251, 255, 0.42) 0%, rgba(248, 251, 255, 0.08) 42%, rgba(248, 251, 255, 0.34) 100%);
 }
 
 .grid-overlay {

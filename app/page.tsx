@@ -34,7 +34,7 @@ export default function Home() {
       <main className="relative overflow-hidden">
         <section className="relative min-h-screen">
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="hero-image absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1800&q=80')",
