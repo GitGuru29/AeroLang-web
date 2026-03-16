@@ -43,7 +43,7 @@ export function ThemeToggle() {
       <span className="theme-toggle-icon" aria-hidden="true">
         {theme === "dark" ? "☀" : "☾"}
       </span>
-      <span className="theme-toggle-label">{mounted ? `${theme === "dark" ? "Light" : "Dark"} mode` : "Theme"}</span>
+      <span className="theme-toggle-label">{mounted ? (theme === "dark" ? "Light" : "Dark") : "Theme"}</span>
     </button>
   );
 }
