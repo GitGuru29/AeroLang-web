@@ -318,6 +318,14 @@ html.light .bg-white\/5 {
   background-color: rgba(255, 255, 255, 0.7) !important;
 }
 
+html.light .bg-\[\#08111f\],
+html.light .bg-\[\#08111f\]\/95,
+html.light .bg-\[\#06101d\]\/80,
+html.light .bg-\[\#030811\],
+html.light .bg-\[\#040b14\] {
+  background-color: var(--surface-strong) !important;
+}
+
 html.light .code-window,
 html.light .playground-shell {
   background: rgba(255, 255, 255, 0.82) !important;
