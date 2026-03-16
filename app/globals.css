@@ -143,43 +143,42 @@ html.light .hero-mask {
 }
 
 html.light .hero-copy {
-  padding: 1.5rem;
-  border: 1px solid rgba(15, 30, 52, 0.1);
-  border-radius: 2rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(247, 251, 255, 0.5));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.94),
-    0 20px 54px rgba(78, 99, 129, 0.14);
-  backdrop-filter: blur(14px);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 html.light .hero-copy .eyebrow {
-  background: rgba(17, 126, 209, 0.1);
-  border-color: rgba(17, 126, 209, 0.18);
+  background: rgba(6, 16, 29, 0.34);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #d5f6ff;
 }
 
 html.light .hero-copy .text-slate-100 {
-  color: #0b1726 !important;
+  color: #f4f8ff !important;
 }
 
 html.light .hero-copy .text-slate-300 {
-  color: #42556d !important;
+  color: #d2dce8 !important;
 }
 
 html.light .hero-copy .text-slate-200 {
-  color: #213449 !important;
+  color: #ebf2fb !important;
 }
 
 html.light .hero-copy .bg-white\/\[0\.03\],
 html.light .hero-copy .bg-white\/\[0\.04\],
 html.light .hero-copy .bg-white\/5 {
-  background-color: rgba(255, 255, 255, 0.84) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 html.light .hero-copy .border-white\/10,
 html.light .hero-copy .border-white\/12,
 html.light .hero-copy .border-white\/15 {
-  border-color: rgba(15, 30, 52, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
 }
 
 html.light .hero-copy .text-emerald-300 {
