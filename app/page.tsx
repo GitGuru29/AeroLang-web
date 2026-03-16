@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <>
       <main className="relative overflow-hidden">
-        <section className="relative min-h-screen">
+        <section data-cursor-exclude="true" className="relative min-h-screen">
           <div
             className="hero-image absolute inset-0 bg-cover bg-center"
             style={{

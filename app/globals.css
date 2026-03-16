@@ -232,6 +232,25 @@ html.light .noise::before {
   box-shadow: 0 0 14px rgba(70, 223, 255, 0.55);
 }
 
+.cursor-trail-dot {
+  position: fixed;
+  left: -4px;
+  top: -4px;
+  z-index: 95;
+  height: 8px;
+  width: 8px;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(183, 244, 255, 0.95), rgba(70, 223, 255, 0.2) 68%, transparent 100%);
+  box-shadow: 0 0 14px rgba(70, 223, 255, 0.14);
+  transition: opacity 160ms ease;
+}
+
+html.light .cursor-trail-dot {
+  background: radial-gradient(circle, rgba(17, 126, 209, 0.78), rgba(36, 87, 197, 0.14) 70%, transparent 100%);
+  box-shadow: 0 0 12px rgba(17, 126, 209, 0.12);
+}
+
 .theme-toggle {
   position: fixed;
   right: 1.5rem;
@@ -508,6 +527,7 @@ html.light .roadmap-branch::after {
 }
 
 @media (pointer: coarse) {
+  .cursor-trail-dot,
   .cursor-orb {
     display: none;
   }
@@ -540,6 +560,7 @@ html.light .roadmap-branch::after {
 
   .starfield-layer,
   .star-particle,
+  .cursor-trail-dot,
   .cursor-orb {
     display: none !important;
   }
