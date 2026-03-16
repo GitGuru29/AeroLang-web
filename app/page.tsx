@@ -67,7 +67,7 @@ export default function Home() {
             <div className="grid min-h-[calc(100vh-110px)] items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
               <div className="hero-copy max-w-3xl">
                 <span className="eyebrow">Experimental Android-native language</span>
-                <h1 className="mt-5 -translate-y-1 text-4xl font-medium tracking-[-0.06em] text-gradient sm:text-5xl md:text-6xl">
+                <h1 className="mt-5 -translate-y-[10px] text-5xl font-medium tracking-[-0.06em] text-gradient sm:text-6xl md:text-7xl">
                   AeroLang
                 </h1>
                 <p className="mt-4 text-xl font-medium text-slate-100 md:text-3xl">
