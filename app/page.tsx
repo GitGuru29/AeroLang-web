@@ -63,8 +63,8 @@ export default function Home() {
 
           <SiteHeader />
 
-          <div className="section-shell relative z-10 py-8 sm:py-10 md:py-16">
-            <div className="grid min-h-0 gap-8 pt-2 sm:gap-10 lg:min-h-[calc(100vh-110px)] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12">
+          <div className="section-shell relative z-10 py-6 sm:py-8 md:py-12">
+            <div className="grid min-h-0 gap-8 pt-0 sm:gap-10 lg:min-h-[calc(100vh-110px)] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12">
               <div className="hero-copy max-w-3xl">
                 <span className="eyebrow">Experimental Android-native language</span>
                 <h1 className="mt-4 inline-block text-[2.6rem] font-medium leading-[0.96] tracking-[-0.08em] text-gradient sm:mt-5 sm:-translate-y-[10px] sm:pb-1 sm:text-6xl md:text-7xl">
