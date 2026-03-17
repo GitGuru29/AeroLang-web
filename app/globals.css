@@ -589,12 +589,23 @@ html.light .roadmap-branch::after {
 }
 
 @media (max-width: 640px) {
+  .section-shell {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .hero-copy {
     max-width: none;
   }
 
   .hero-actions > * {
     width: 100%;
+  }
+
+  .glass-panel {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 16px 48px rgba(0, 0, 0, 0.3);
   }
 
   .theme-toggle {

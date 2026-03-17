@@ -93,14 +93,14 @@ export function HeroSnippet() {
 
   return (
     <div className="glass-panel overflow-hidden rounded-[30px] border border-white/12 bg-[#06101d]/80 shadow-glow">
-      <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-4 sm:px-5 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="flex gap-2">
             <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
             <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
             <span className="h-3 w-3 rounded-full bg-[#28c840]" />
           </div>
-          <div className="flex gap-2 text-xs uppercase tracking-[0.25em] text-slate-500">
+          <div className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.2em] text-slate-500 sm:text-xs sm:tracking-[0.25em]">
             {snippets.map((snippet, index) => (
               <button
                 key={snippet.tab}
@@ -115,10 +115,12 @@ export function HeroSnippet() {
             ))}
           </div>
         </div>
-        <span className="text-xs uppercase tracking-[0.25em] text-slate-500">{activeSnippet.label}</span>
+        <span className="text-[11px] uppercase tracking-[0.2em] text-slate-500 sm:text-xs sm:tracking-[0.25em]">
+          {activeSnippet.label}
+        </span>
       </div>
       <div className="grid gap-0 bg-[linear-gradient(180deg,rgba(20,156,255,0.08),transparent_24%)] px-4 py-5 md:px-6">
-        <div className="grid grid-cols-[32px_1fr] gap-3 font-mono text-sm md:text-[15px]">
+        <div className="grid grid-cols-[24px_1fr] gap-2 font-mono text-xs sm:grid-cols-[32px_1fr] sm:gap-3 sm:text-sm md:text-[15px]">
           <span className="select-none text-right text-slate-600">1</span>
           <code className="whitespace-pre-wrap">
             {activeSnippet.lines.map((segment, index) => {

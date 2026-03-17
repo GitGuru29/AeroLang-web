@@ -15,10 +15,10 @@ export default function DocsPage() {
         <SiteHeader />
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Documentation</span>
-          <h1 className="mt-6 max-w-4xl text-5xl font-medium tracking-[-0.06em] text-white md:text-7xl">
+          <h1 className="mt-6 max-w-4xl text-4xl font-medium tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
             Syntax, Android APIs, and installation in one place.
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
             This page converts the original placeholder docs area into a real documentation surface. Claims are
             framed as current direction unless they are demonstrably shipping today.
           </p>
@@ -26,10 +26,10 @@ export default function DocsPage() {
 
         <section className="section-shell grid gap-6 pb-24 md:pb-32">
           {docsSections.map((section) => (
-            <article key={section.title} className="glass-panel rounded-[32px] p-7">
+            <article key={section.title} className="glass-panel rounded-[32px] p-5 sm:p-7">
               <p className="text-xs uppercase tracking-[0.25em] text-cyan">{section.eyebrow}</p>
               <h2 className="mt-4 text-3xl font-medium tracking-[-0.04em] text-white md:text-4xl">{section.title}</h2>
-              <div className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <div className="mt-5 space-y-4 text-sm leading-7 text-slate-300 sm:text-base sm:leading-8">
                 {section.body.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -46,7 +46,7 @@ export default function DocsPage() {
         </section>
 
         <section className="section-shell grid gap-6 pb-24 md:grid-cols-[0.9fr_1.1fr] md:pb-32">
-          <div className="glass-panel rounded-[32px] p-7">
+          <div className="glass-panel rounded-[32px] p-5 sm:p-7">
             <p className="text-xs uppercase tracking-[0.25em] text-cyan">Prerequisites</p>
             <h2 className="mt-4 text-3xl font-medium tracking-[-0.04em] text-white">Setup requirements</h2>
             <div className="mt-5 space-y-3 text-sm leading-7 text-slate-300">
@@ -55,7 +55,7 @@ export default function DocsPage() {
               ))}
             </div>
           </div>
-          <div className="glass-panel rounded-[32px] p-7">
+          <div className="glass-panel rounded-[32px] p-5 sm:p-7">
             <p className="text-xs uppercase tracking-[0.25em] text-cyan">First Project</p>
             <h2 className="mt-4 text-3xl font-medium tracking-[-0.04em] text-white">Recommended setup sequence</h2>
             <div className="mt-5 space-y-3 text-sm leading-7 text-slate-300">
@@ -77,10 +77,10 @@ export default function DocsPage() {
         </section>
 
         <section className="section-shell pb-24 md:pb-32">
-          <div className="glass-panel rounded-[32px] p-7">
+          <div className="glass-panel rounded-[32px] p-5 sm:p-7">
             <p className="text-xs uppercase tracking-[0.25em] text-cyan">Platform Matrix</p>
             <h2 className="mt-4 text-3xl font-medium tracking-[-0.04em] text-white">Support levels</h2>
-            <div className="mt-8 overflow-hidden rounded-[24px] border border-white/10">
+            <div className="mt-8 hidden overflow-hidden rounded-[24px] border border-white/10 md:block">
               <div className="grid grid-cols-3 bg-white/[0.04] px-5 py-4 text-xs uppercase tracking-[0.22em] text-slate-500">
                 <p>Platform</p>
                 <p>Support</p>
@@ -91,6 +91,18 @@ export default function DocsPage() {
                   <p>{item.platform}</p>
                   <p>{item.support}</p>
                   <p>{item.notes}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 grid gap-4 md:hidden">
+              {supportMatrix.map((item) => (
+                <div key={item.platform} className="rounded-[22px] border border-white/10 bg-[#08111f] p-4">
+                  <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Platform</p>
+                  <p className="mt-2 text-base text-white">{item.platform}</p>
+                  <p className="mt-4 text-xs uppercase tracking-[0.22em] text-slate-500">Support</p>
+                  <p className="mt-2 text-sm text-slate-300">{item.support}</p>
+                  <p className="mt-4 text-xs uppercase tracking-[0.22em] text-slate-500">Notes</p>
+                  <p className="mt-2 text-sm leading-7 text-slate-300">{item.notes}</p>
                 </div>
               ))}
             </div>

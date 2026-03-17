@@ -18,10 +18,10 @@ export default function RoadmapPage() {
         <SiteHeader />
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Roadmap</span>
-          <h1 className="mt-6 max-w-4xl text-5xl font-medium tracking-[-0.06em] text-white md:text-7xl">
+          <h1 className="mt-6 max-w-4xl text-4xl font-medium tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
             Visible execution beats vague promises.
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
             This page separates the current release baseline from future milestones so visitors can see what is
             present now and what is still planned.
           </p>
@@ -33,7 +33,7 @@ export default function RoadmapPage() {
             <div className="relative">
               <div className="text-center">
                 <p className="text-xs uppercase tracking-[0.25em] text-cyan">Roadmap Tree</p>
-                <h2 className="mt-4 text-4xl font-medium tracking-[-0.05em] text-white md:text-5xl">
+                <h2 className="mt-4 text-3xl font-medium tracking-[-0.05em] text-white sm:text-4xl md:text-5xl">
                   Project growth mapped like a branching system.
                 </h2>
               </div>

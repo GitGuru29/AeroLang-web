@@ -15,10 +15,10 @@ export default function ExamplesPage() {
         <SiteHeader />
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Examples</span>
-          <h1 className="mt-6 max-w-4xl text-5xl font-medium tracking-[-0.06em] text-white md:text-7xl">
+          <h1 className="mt-6 max-w-4xl text-4xl font-medium tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
             Real-world snippets, not just card titles.
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
             The gallery now includes concrete AeroLang examples and clearly labels roadmap-only material so the
             site does not blur available features with planned ones.
           </p>
@@ -36,7 +36,7 @@ export default function ExamplesPage() {
 
         <section className="section-shell grid gap-6 pb-24 md:pb-32">
           {examples.map((example) => (
-            <article key={example.slug} className="glass-panel rounded-[32px] p-7">
+            <article key={example.slug} className="glass-panel rounded-[32px] p-5 sm:p-7">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div>
                   <span
@@ -61,7 +61,7 @@ export default function ExamplesPage() {
                   {example.status}
                 </span>
               </div>
-              <pre className="mt-8 overflow-x-auto rounded-[24px] border border-white/10 bg-[#08111f] p-5 font-mono text-sm leading-7 text-slate-200">
+              <pre className="mt-8 overflow-x-auto rounded-[24px] border border-white/10 bg-[#08111f] p-4 font-mono text-xs leading-6 text-slate-200 sm:p-5 sm:text-sm sm:leading-7">
                 <code>{example.code}</code>
               </pre>
               <p className="mt-6 text-sm leading-7 text-slate-300">{example.explanation}</p>

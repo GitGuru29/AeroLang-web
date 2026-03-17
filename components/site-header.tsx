@@ -11,8 +11,8 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="section-shell relative z-30 pt-6">
-      <nav className="glass-panel rounded-full px-5 py-4">
+    <header className="section-shell relative z-30 pt-4 md:pt-6">
+      <nav className="glass-panel rounded-[28px] px-4 py-3 sm:px-5 sm:py-4 md:rounded-full">
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3 text-white">
             <Image
@@ -22,7 +22,7 @@ export function SiteHeader() {
               height={40}
               className="h-10 w-10 object-contain"
             />
-            <span className="text-lg font-semibold tracking-[0.12em]">AeroLang</span>
+            <span className="text-base font-semibold tracking-[0.1em] sm:text-lg sm:tracking-[0.12em]">AeroLang</span>
           </Link>
 
           <div className="hidden items-center gap-3 md:flex">
