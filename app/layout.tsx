@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       "Experimental programming language focused on improving Android performance and reducing JVM overhead.",
     url: "https://aero-lang-web.vercel.app/",
     siteName: "AeroLang",
-    images: [{ url: "/logo.png", width: 1068, height: 1078, alt: "AeroLang logo" }],
+    images: [{ url: "https://aero-lang-web.vercel.app/preview.png", width: 1200, height: 630, alt: "AeroLang social preview" }],
     type: "website",
   },
   twitter: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "AeroLang - Native Performance Android Development",
     description:
       "Experimental programming language focused on improving Android performance and reducing JVM overhead.",
-    images: ["/logo.png"],
+    images: ["https://aero-lang-web.vercel.app/preview.png"],
   },
 };
 
@@ -43,6 +43,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Explicit OG meta tags — present in static HTML for crawlers like LinkedIn */}
+        <meta property="og:title" content="AeroLang - Native Performance Android Development" />
+        <meta property="og:description" content="Experimental programming language focused on improving Android performance and reducing JVM overhead." />
+        <meta property="og:image" content="https://aero-lang-web.vercel.app/preview.png" />
+        <meta property="og:url" content="https://aero-lang-web.vercel.app/" />
+        <meta property="og:type" content="website" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
