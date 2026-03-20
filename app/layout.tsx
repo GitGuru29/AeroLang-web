@@ -7,30 +7,31 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "AeroLang | Native Performance Android Development",
+    default: "AeroLang - Native Performance Android Development",
     template: "%s | AeroLang",
   },
-  description: "AeroLang is an Android-native language direction with docs, examples, roadmap pages, and a high-fidelity playground.",
+  description:
+    "Experimental programming language focused on improving Android performance and reducing JVM overhead.",
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
     apple: "/icon.png",
   },
   openGraph: {
-    title: "AeroLang | Native Performance Android Development",
+    title: "AeroLang - Native Performance Android Development",
     description:
-      "Build Android applications with a Kotlin-inspired language direction focused on native execution, Android APIs, and compiler-backed tooling.",
-    url: siteUrl,
+      "Experimental programming language focused on improving Android performance and reducing JVM overhead.",
+    url: "https://aero-lang-web.vercel.app/",
     siteName: "AeroLang",
-    images: [{ url: "/icon.png", width: 512, height: 512, alt: "AeroLang icon" }],
+    images: [{ url: "/logo.png", width: 1068, height: 1078, alt: "AeroLang logo" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AeroLang | Native Performance Android Development",
+    title: "AeroLang - Native Performance Android Development",
     description:
-      "Docs, examples, roadmap details, and a playground for the AeroLang Android-native language direction.",
-    images: ["/icon.png"],
+      "Experimental programming language focused on improving Android performance and reducing JVM overhead.",
+    images: ["/logo.png"],
   },
 };
 
