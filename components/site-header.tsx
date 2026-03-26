@@ -22,7 +22,7 @@ export function SiteHeader() {
               height={40}
               className="h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10"
             />
-            <span className="truncate text-sm font-semibold tracking-[0.08em] sm:text-lg sm:tracking-[0.12em]">AEROLANG™</span>
+            <span className="truncate text-sm font-semibold tracking-[0.08em] sm:text-lg sm:tracking-[0.12em]">AEROLANG</span>
           </Link>
 
           <div className="hidden items-center gap-3 md:flex">
