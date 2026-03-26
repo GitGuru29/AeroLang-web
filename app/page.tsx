@@ -68,13 +68,13 @@ export default function Home() {
               <div className="hero-copy max-w-3xl">
                 <span className="eyebrow">Experimental Android-native language</span>
                 <h1 className="mt-4 inline-block text-[2.6rem] font-medium leading-[0.96] tracking-[-0.08em] text-gradient sm:mt-5 sm:-translate-y-[10px] sm:pb-1 sm:text-6xl md:text-7xl">
-                  AeroLang
+                  AEROLANG™
                 </h1>
                 <p className="mt-4 max-w-xl text-base font-medium leading-7 text-slate-100 sm:text-xl sm:leading-8 md:text-3xl md:leading-tight">
                   Native performance Android development with a Kotlin-inspired surface.
                 </p>
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base md:text-lg md:leading-8">
-                  AeroLang is presented as a language and tooling direction for Android builders who want more
+                  AEROLANG™ is presented as a language and tooling direction for Android builders who want more
                   direct control. This site now routes into real docs, examples, roadmap content, and a clearer
                   installation story.
                 </p>

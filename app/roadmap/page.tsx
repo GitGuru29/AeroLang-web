@@ -5,7 +5,7 @@ import { releaseHighlights, roadmapItems } from "@/app/site-data";
 
 export const metadata: Metadata = {
   title: "Roadmap & Release Status",
-  description: "AeroLang release framing, current milestone highlights, and planned roadmap items.",
+  description: "AEROLANG™ release framing, current milestone highlights, and planned roadmap items.",
 };
 
 export default function RoadmapPage() {

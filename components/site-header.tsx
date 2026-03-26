@@ -17,12 +17,12 @@ export function SiteHeader() {
           <Link href="/" className="flex items-center gap-3 text-white">
             <Image
               src="/aerolang-logo.png"
-              alt="AeroLang logo"
+              alt="AEROLANG trademark logo"
               width={40}
               height={40}
               className="h-10 w-10 object-contain"
             />
-            <span className="text-base font-semibold tracking-[0.1em] sm:text-lg sm:tracking-[0.12em]">AeroLang</span>
+            <span className="text-base font-semibold tracking-[0.1em] sm:text-lg sm:tracking-[0.12em]">AEROLANG™</span>
           </Link>
 
           <div className="hidden items-center gap-3 md:flex">
