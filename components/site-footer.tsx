@@ -12,12 +12,12 @@ export function SiteFooter() {
               <div className="flex items-center gap-3 sm:gap-4">
                 <Image
                   src="/aerolang-logo.png"
-                  alt="AEROLANG trademark logo"
+                  alt="AeroLang trademark logo"
                   width={56}
                   height={56}
                   className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14"
                 />
-                <p className="text-xl font-medium text-white sm:text-2xl">AEROLANG™</p>
+                <p className="text-xl font-medium text-white sm:text-2xl">AeroLang™</p>
               </div>
               <p className="mt-3 max-w-md text-sm leading-7 text-slate-400">
                 Native Android language and tooling direction focused on serious runtime control, documentation,
@@ -47,7 +47,7 @@ export function SiteFooter() {
                 <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Project</p>
                 <div className="mt-4 flex flex-col gap-3 text-sm text-slate-300">
                   <a href={repoUrl} target="_blank" rel="noreferrer">
-                    AEROLANG™ Demo Repo
+                    AeroLang™ Demo Repo
                   </a>
                   <a href={websiteRepoUrl} target="_blank" rel="noreferrer">
                     Website Repo
@@ -69,7 +69,7 @@ export function SiteFooter() {
             </div>
           </div>
           <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs uppercase tracking-[0.2em] text-slate-500">
-            © 2026 AEROLANG™. All rights reserved.
+            © 2026 AeroLang™. All rights reserved.
           </div>
         </div>
       </div>

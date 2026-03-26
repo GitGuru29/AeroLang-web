@@ -5,7 +5,7 @@ import { docsSections, installPrerequisites, installSteps, repoUrl, supportMatri
 
 export const metadata: Metadata = {
   title: "Documentation - Syntax & APIs",
-  description: "AEROLANG™ documentation covering language goals, syntax, modules, Android APIs, and installation flow.",
+  description: "AeroLang™ documentation covering language goals, syntax, modules, Android APIs, and installation flow.",
 };
 
 export default function DocsPage() {
@@ -71,7 +71,7 @@ export default function DocsPage() {
               rel="noreferrer"
               className="mt-8 inline-flex w-full justify-center rounded-full bg-cyan px-5 py-3 text-sm font-semibold text-slate-950 sm:w-auto"
             >
-              Open AEROLANG™ Demo Repo
+              Open AeroLang™ Demo Repo
             </a>
           </div>
         </section>

@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
   title: "Playground",
-  description: "AEROLANG™ playground with persistent editor state, shareable URLs, and clear simulated-runtime messaging.",
+  description: "AeroLang™ playground with persistent editor state, shareable URLs, and clear simulated-runtime messaging.",
 };
 
 export default function PlaygroundPage() {
@@ -21,7 +21,7 @@ export default function PlaygroundPage() {
                 AeroLab for fast language exploration.
               </h1>
               <p className="mt-6 text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-                Prototype AEROLANG™ syntax, inspect compile diagnostics, and switch between curated examples in
+                Prototype AeroLang™ syntax, inspect compile diagnostics, and switch between curated examples in
                 a serious editor interface built for language tooling demos.
               </p>
             </div>

@@ -5,7 +5,7 @@ import { communityLinks, issuesUrl, repoUrl } from "@/app/site-data";
 
 export const metadata: Metadata = {
   title: "Community & Project Links",
-  description: "AEROLANG™ repositories, discussions, issues, and contributing entry points.",
+  description: "AeroLang™ repositories, discussions, issues, and contributing entry points.",
 };
 
 export default function CommunityPage() {

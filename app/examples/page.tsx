@@ -5,7 +5,7 @@ import { examples, examplesRepoUrl } from "@/app/site-data";
 
 export const metadata: Metadata = {
   title: "Gallery - Real World Code Samples",
-  description: "AEROLANG™ example gallery with starter code, UI examples, and clearly marked planned items.",
+  description: "AeroLang™ example gallery with starter code, UI examples, and clearly marked planned items.",
 };
 
 export default function ExamplesPage() {
