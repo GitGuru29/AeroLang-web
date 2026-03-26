@@ -183,7 +183,7 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
   }, [code, selectedExample, status]);
 
   return (
-    <div className="playground-shell glass-panel overflow-hidden rounded-[32px] border border-white/12 bg-[#06101d]/80 shadow-glow">
+    <div className="playground-shell glass-panel min-w-0 overflow-hidden rounded-[32px] border border-white/12 bg-[#06101d]/80 shadow-glow">
       <div className="flex flex-col gap-4 border-b border-white/10 px-4 py-4 sm:px-5 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <p className="text-sm uppercase tracking-[0.25em] text-cyan">AeroLang Playground</p>
@@ -192,7 +192,7 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
             Simulated runtime in-browser. Use the VS Code workflow for compiler-backed APK generation.
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex w-full flex-wrap gap-2 lg:w-auto lg:justify-end">
           <button
             type="button"
             onClick={handleRun}
@@ -247,14 +247,14 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
               {example.label}
             </button>
           ))}
-          <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-xs uppercase tracking-[0.22em] text-emerald-300 sm:ml-auto">
+          <span className="w-full rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-center text-xs uppercase tracking-[0.22em] text-emerald-300 sm:ml-auto sm:w-auto">
             {status}
           </span>
         </div>
       </div>
 
-      <div className={`grid ${compact ? "xl:grid-cols-[1.2fr_0.8fr]" : "xl:grid-cols-[1.35fr_0.65fr]"}`}>
-        <div className="border-b border-white/10 xl:border-b-0 xl:border-r xl:border-white/10">
+      <div className={`grid min-w-0 ${compact ? "xl:grid-cols-[1.2fr_0.8fr]" : "xl:grid-cols-[1.35fr_0.65fr]"}`}>
+        <div className="min-w-0 border-b border-white/10 xl:border-b-0 xl:border-r xl:border-white/10">
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 text-xs uppercase tracking-[0.25em] text-slate-500 sm:px-5">
             <span>{selectedExample}.aero</span>
             <span>Editor</span>
@@ -271,15 +271,17 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
           </div>
         </div>
 
-        <div className="grid">
+        <div className="grid min-w-0">
           <div className="border-b border-white/10">
             <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 text-xs uppercase tracking-[0.25em] text-slate-500 sm:px-5">
               <span>Output</span>
               <span>Terminal</span>
             </div>
-            <div className={`space-y-3 bg-[#030811] p-4 font-mono text-sm text-slate-300 sm:p-5 ${compact ? "min-h-[220px]" : "min-h-[280px]"}`}>
+            <div className={`space-y-3 overflow-x-auto bg-[#030811] p-4 font-mono text-sm text-slate-300 sm:p-5 ${compact ? "min-h-[220px]" : "min-h-[280px]"}`}>
               {output.map((line, index) => (
-                <div key={`${index}-${line}`}>{line}</div>
+                <div key={`${index}-${line}`} className="min-w-0 break-words">
+                  {line}
+                </div>
               ))}
             </div>
           </div>
@@ -299,9 +301,11 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
                 </button>
               ))}
             </div>
-            <div className="space-y-2 bg-[#040a12] px-4 py-4 font-mono text-xs text-slate-400 sm:px-5">
+            <div className="space-y-2 overflow-x-auto bg-[#040a12] px-4 py-4 font-mono text-xs text-slate-400 sm:px-5">
               {diagnostics[activePanel].map((item) => (
-                <div key={item}>{item}</div>
+                <div key={item} className="break-words">
+                  {item}
+                </div>
               ))}
             </div>
           </div>

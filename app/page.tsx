@@ -67,7 +67,7 @@ export default function Home() {
             <div className="grid min-h-0 gap-8 pt-0 sm:gap-10 lg:min-h-[calc(100vh-110px)] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12">
               <div className="hero-copy max-w-3xl">
                 <span className="eyebrow">Experimental Android-native language</span>
-                <h1 className="mt-4 inline-block text-[2.6rem] font-medium leading-[0.96] tracking-[-0.08em] text-gradient sm:mt-5 sm:-translate-y-[10px] sm:pb-1 sm:text-6xl md:text-7xl">
+                <h1 className="display-title mt-4 inline-block tracking-[-0.08em] text-gradient sm:mt-5 sm:-translate-y-[10px] sm:pb-1">
                   AEROLANG™
                 </h1>
                 <p className="mt-4 max-w-xl text-base font-medium leading-7 text-slate-100 sm:text-xl sm:leading-8 md:text-3xl md:leading-tight">
@@ -143,7 +143,7 @@ export default function Home() {
         <section className="section-shell py-16 sm:py-20 md:py-32">
           <div className="mb-10 sm:mb-14">
             <span className="eyebrow">Capabilities</span>
-            <h2 className="mt-5 max-w-4xl text-[2rem] font-medium leading-tight tracking-[-0.06em] sm:mt-6 sm:text-4xl md:text-6xl">
+            <h2 className="section-title mt-5 max-w-4xl font-medium tracking-[-0.06em] sm:mt-6">
               The site now explains the product instead of hinting at it.
             </h2>
           </div>
@@ -168,7 +168,7 @@ export default function Home() {
           <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="glass-panel rounded-[32px] p-5 sm:p-7">
               <span className="eyebrow">Docs Snapshot</span>
-              <h2 className="mt-5 text-[2rem] font-medium leading-tight tracking-[-0.05em] text-white sm:mt-6 sm:text-4xl md:text-5xl">
+              <h2 className="section-title mt-5 font-medium tracking-[-0.05em] text-white sm:mt-6">
                 `/docs` now has concrete language content.
               </h2>
               <div className="mt-8 grid gap-4">
@@ -187,7 +187,7 @@ export default function Home() {
 
             <div className="glass-panel rounded-[32px] p-5 sm:p-7">
               <span className="eyebrow">Install Flow</span>
-              <h2 className="mt-5 text-[2rem] font-medium leading-tight tracking-[-0.05em] text-white sm:mt-6 sm:text-4xl md:text-5xl">
+              <h2 className="section-title mt-5 font-medium tracking-[-0.05em] text-white sm:mt-6">
                 Installation is now explicit.
               </h2>
               <div className="mt-8 grid gap-4">
@@ -216,7 +216,7 @@ export default function Home() {
           <div className="mb-10 flex flex-col gap-5 sm:mb-14 md:flex-row md:items-end md:justify-between">
             <div>
               <span className="eyebrow">Examples Gallery</span>
-              <h2 className="mt-5 max-w-4xl text-[2rem] font-medium leading-tight tracking-[-0.06em] sm:mt-6 sm:text-4xl md:text-6xl">
+              <h2 className="section-title mt-5 max-w-4xl font-medium tracking-[-0.06em] sm:mt-6">
                 Real example content, with planned items clearly marked.
               </h2>
             </div>
@@ -255,7 +255,7 @@ export default function Home() {
           <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
               <span className="eyebrow">Code Example</span>
-              <h2 className="mt-5 max-w-4xl text-[2rem] font-medium leading-tight tracking-[-0.06em] sm:mt-6 sm:text-4xl md:text-6xl">
+              <h2 className="section-title mt-5 max-w-4xl font-medium tracking-[-0.06em] sm:mt-6">
                 Developer tooling with a sharper content layer.
               </h2>
             </div>
@@ -267,7 +267,7 @@ export default function Home() {
           <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <span className="eyebrow">Playground</span>
-              <h2 className="mt-5 text-[2rem] font-medium leading-tight tracking-[-0.06em] sm:mt-6 sm:text-4xl md:text-6xl">
+              <h2 className="section-title mt-5 font-medium tracking-[-0.06em] sm:mt-6">
                 High-fidelity simulation, with clearer product messaging.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
@@ -290,7 +290,7 @@ export default function Home() {
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="glass-panel rounded-[32px] p-5 sm:p-7">
               <span className="eyebrow">Release Notes</span>
-              <h2 className="mt-5 text-[2rem] font-medium leading-tight tracking-[-0.05em] text-white sm:mt-6 sm:text-4xl md:text-5xl">
+              <h2 className="section-title mt-5 font-medium tracking-[-0.05em] text-white sm:mt-6">
                 Current release framing is more concrete.
               </h2>
               <div className="mt-8 space-y-3 text-sm leading-7 text-slate-300">

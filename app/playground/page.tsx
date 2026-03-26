@@ -17,7 +17,7 @@ export default function PlaygroundPage() {
           <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <span className="eyebrow">Playground</span>
-              <h1 className="mt-6 text-4xl font-medium tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
+              <h1 className="page-title mt-6 font-medium tracking-[-0.06em] text-white">
                 AeroLab for fast language exploration.
               </h1>
               <p className="mt-6 text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">

@@ -13,16 +13,16 @@ export function SiteHeader() {
   return (
     <header className="section-shell relative z-30 pt-4 md:pt-6">
       <nav className="glass-panel rounded-[28px] px-4 py-3 sm:px-5 sm:py-4 md:rounded-full">
-        <div className="flex items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-3 text-white">
+        <div className="flex items-center justify-between gap-3 sm:gap-4">
+          <Link href="/" className="flex min-w-0 items-center gap-3 text-white">
             <Image
               src="/aerolang-logo.png"
               alt="AEROLANG trademark logo"
               width={40}
               height={40}
-              className="h-10 w-10 object-contain"
+              className="h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10"
             />
-            <span className="text-base font-semibold tracking-[0.1em] sm:text-lg sm:tracking-[0.12em]">AEROLANG™</span>
+            <span className="truncate text-sm font-semibold tracking-[0.08em] sm:text-lg sm:tracking-[0.12em]">AEROLANG™</span>
           </Link>
 
           <div className="hidden items-center gap-3 md:flex">

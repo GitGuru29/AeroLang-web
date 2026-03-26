@@ -6,18 +6,18 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 py-10">
       <div className="section-shell">
-        <div className="glass-panel rounded-[32px] px-6 py-10 md:px-8">
+        <div className="glass-panel rounded-[32px] px-4 py-8 sm:px-6 md:px-8 md:py-10">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <Image
                   src="/aerolang-logo.png"
                   alt="AEROLANG trademark logo"
                   width={56}
                   height={56}
-                  className="h-14 w-14 object-contain"
+                  className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14"
                 />
-                <p className="text-2xl font-medium text-white">AEROLANG™</p>
+                <p className="text-xl font-medium text-white sm:text-2xl">AEROLANG™</p>
               </div>
               <p className="mt-3 max-w-md text-sm leading-7 text-slate-400">
                 Native Android language and tooling direction focused on serious runtime control, documentation,
@@ -29,7 +29,7 @@ export function SiteFooter() {
               </div>
             </div>
 
-            <div className="grid gap-8 sm:grid-cols-3">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Product</p>
                 <div className="mt-4 flex flex-col gap-3 text-sm text-slate-300">

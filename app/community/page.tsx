@@ -15,7 +15,7 @@ export default function CommunityPage() {
         <SiteHeader />
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Community</span>
-          <h1 className="mt-6 max-w-4xl text-4xl font-medium tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
+          <h1 className="page-title mt-6 max-w-4xl font-medium tracking-[-0.06em] text-white">
             Project links, contribution paths, and discussion channels.
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
@@ -34,7 +34,7 @@ export default function CommunityPage() {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-8 inline-flex rounded-full border border-cyan/20 bg-cyan/10 px-5 py-3 text-sm font-semibold text-cyan transition hover:border-cyan/40"
+                className="mt-8 inline-flex w-full justify-center rounded-full border border-cyan/20 bg-cyan/10 px-5 py-3 text-sm font-semibold text-cyan transition hover:border-cyan/40 sm:w-auto"
               >
                 Open Link
               </a>

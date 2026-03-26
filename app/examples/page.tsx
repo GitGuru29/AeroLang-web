@@ -15,7 +15,7 @@ export default function ExamplesPage() {
         <SiteHeader />
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Examples</span>
-          <h1 className="mt-6 max-w-4xl text-4xl font-medium tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
+          <h1 className="page-title mt-6 max-w-4xl font-medium tracking-[-0.06em] text-white">
             Real-world snippets, not just card titles.
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
@@ -61,8 +61,8 @@ export default function ExamplesPage() {
                   {example.status}
                 </span>
               </div>
-              <pre className="mt-8 overflow-x-auto rounded-[24px] border border-white/10 bg-[#08111f] p-4 font-mono text-xs leading-6 text-slate-200 sm:p-5 sm:text-sm sm:leading-7">
-                <code>{example.code}</code>
+              <pre className="mt-8 rounded-[24px] border border-white/10 bg-[#08111f] p-4 font-mono text-xs leading-6 text-slate-200 sm:p-5 sm:text-sm sm:leading-7">
+                <code className="code-scroll block">{example.code}</code>
               </pre>
               <p className="mt-6 text-sm leading-7 text-slate-300">{example.explanation}</p>
             </article>

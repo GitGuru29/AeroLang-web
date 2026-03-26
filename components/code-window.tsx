@@ -55,7 +55,7 @@ export function CodeWindow() {
   }
 
   return (
-    <div className="code-window glass-panel overflow-hidden rounded-[28px] border border-white/12 bg-[#06101d]/80 shadow-glow">
+    <div className="code-window glass-panel min-w-0 overflow-hidden rounded-[28px] border border-white/12 bg-[#06101d]/80 shadow-glow">
       <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-4 sm:px-5">
         <div className="flex items-center gap-3">
           <div className="flex gap-2">
@@ -74,18 +74,22 @@ export function CodeWindow() {
         </button>
       </div>
       <div className="grid gap-0 bg-[linear-gradient(180deg,rgba(20,156,255,0.08),transparent_24%)] px-4 py-5 md:px-6">
-        {lines.map((line, index) => (
-          <div key={index} className="grid grid-cols-[24px_1fr] gap-2 py-1 font-mono text-xs sm:grid-cols-[36px_1fr] sm:gap-3 sm:text-sm md:text-[15px]">
-            <span className="select-none text-right text-slate-600">{index + 1}</span>
-            <code className="whitespace-pre-wrap">
-              {line.map((segment) => (
-                <span key={`${index}-${segment.text}`} className={segment.className}>
-                  {segment.text}
-                </span>
-              ))}
-            </code>
+        <div className="code-scroll">
+          <div>
+            {lines.map((line, index) => (
+              <div key={index} className="grid grid-cols-[24px_1fr] gap-2 py-1 font-mono text-xs sm:grid-cols-[36px_1fr] sm:gap-3 sm:text-sm md:text-[15px]">
+                <span className="select-none text-right text-slate-600">{index + 1}</span>
+                <code className="whitespace-pre-wrap">
+                  {line.map((segment) => (
+                    <span key={`${index}-${segment.text}`} className={segment.className}>
+                      {segment.text}
+                    </span>
+                  ))}
+                </code>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );

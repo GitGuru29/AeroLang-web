@@ -15,7 +15,7 @@ export default function DocsPage() {
         <SiteHeader />
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Documentation</span>
-          <h1 className="mt-6 max-w-4xl text-4xl font-medium tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
+          <h1 className="page-title mt-6 max-w-4xl font-medium tracking-[-0.06em] text-white">
             Syntax, Android APIs, and installation in one place.
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
@@ -69,7 +69,7 @@ export default function DocsPage() {
               href={repoUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-8 inline-flex rounded-full bg-cyan px-5 py-3 text-sm font-semibold text-slate-950"
+              className="mt-8 inline-flex w-full justify-center rounded-full bg-cyan px-5 py-3 text-sm font-semibold text-slate-950 sm:w-auto"
             >
               Open AEROLANG™ Demo Repo
             </a>

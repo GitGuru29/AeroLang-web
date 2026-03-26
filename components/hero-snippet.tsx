@@ -92,7 +92,7 @@ export function HeroSnippet() {
   let remainingChars = visibleChars;
 
   return (
-    <div className="glass-panel overflow-hidden rounded-[30px] border border-white/12 bg-[#06101d]/80 shadow-glow">
+    <div className="glass-panel min-w-0 overflow-hidden rounded-[30px] border border-white/12 bg-[#06101d]/80 shadow-glow">
       <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-4 sm:px-5 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex gap-2">
@@ -120,7 +120,8 @@ export function HeroSnippet() {
         </span>
       </div>
       <div className="grid gap-0 bg-[linear-gradient(180deg,rgba(20,156,255,0.08),transparent_24%)] px-4 py-5 md:px-6">
-        <div className="grid grid-cols-[24px_1fr] gap-2 font-mono text-xs sm:grid-cols-[32px_1fr] sm:gap-3 sm:text-sm md:text-[15px]">
+        <div className="code-scroll">
+          <div className="grid grid-cols-[24px_1fr] gap-2 font-mono text-xs sm:grid-cols-[32px_1fr] sm:gap-3 sm:text-sm md:text-[15px]">
           <span className="select-none text-right text-slate-600">1</span>
           <code className="whitespace-pre-wrap">
             {activeSnippet.lines.map((segment, index) => {
@@ -135,6 +136,7 @@ export function HeroSnippet() {
             })}
             <span className="ml-0.5 inline-block h-4 w-px animate-pulse bg-cyan align-middle" />
           </code>
+          </div>
         </div>
       </div>
     </div>

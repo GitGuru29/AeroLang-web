@@ -18,7 +18,7 @@ export default function RoadmapPage() {
         <SiteHeader />
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Roadmap</span>
-          <h1 className="mt-6 max-w-4xl text-4xl font-medium tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
+          <h1 className="page-title mt-6 max-w-4xl font-medium tracking-[-0.06em] text-white">
             Visible execution beats vague promises.
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
