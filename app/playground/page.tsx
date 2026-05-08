@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
   title: "Playground",
-  description: "AeroLang playground with persistent editor state, shareable URLs, and clear simulated-runtime messaging.",
+  description: "AeroLang™ playground with persistent editor state, shareable URLs, and clear simulated-runtime messaging.",
 };
 
 export default function PlaygroundPage() {
@@ -17,15 +17,15 @@ export default function PlaygroundPage() {
           <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <span className="eyebrow">Playground</span>
-              <h1 className="mt-6 text-5xl font-medium tracking-[-0.06em] text-white md:text-7xl">
+              <h1 className="page-title mt-6 font-medium tracking-[-0.06em] text-white">
                 AeroLab for fast language exploration.
               </h1>
-              <p className="mt-6 text-lg leading-8 text-slate-300">
-                Prototype AeroLang syntax, inspect compile diagnostics, and switch between curated examples in
+              <p className="mt-6 text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+                Prototype AeroLang™ syntax, inspect compile diagnostics, and switch between curated examples in
                 a serious editor interface built for language tooling demos.
               </p>
             </div>
-            <div className="glass-panel rounded-[28px] px-5 py-4 text-sm text-slate-300">
+            <div className="glass-panel w-full rounded-[28px] px-5 py-4 text-sm text-slate-300 md:w-auto">
               <p className="text-xs uppercase tracking-[0.25em] text-cyan">Status</p>
               <p className="mt-2">Simulation Layer</p>
               <p className="mt-1 text-slate-500">Use the VS Code workflow for full compiler features</p>

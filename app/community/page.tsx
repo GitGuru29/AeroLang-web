@@ -5,7 +5,7 @@ import { communityLinks, issuesUrl, repoUrl } from "@/app/site-data";
 
 export const metadata: Metadata = {
   title: "Community & Project Links",
-  description: "AeroLang repositories, discussions, issues, and contributing entry points.",
+  description: "AeroLang™ repositories, discussions, issues, and contributing entry points.",
 };
 
 export default function CommunityPage() {
@@ -15,10 +15,10 @@ export default function CommunityPage() {
         <SiteHeader />
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Community</span>
-          <h1 className="mt-6 max-w-4xl text-5xl font-medium tracking-[-0.06em] text-white md:text-7xl">
+          <h1 className="page-title mt-6 max-w-4xl font-medium tracking-[-0.06em] text-white">
             Project links, contribution paths, and discussion channels.
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
             The website now provides real destinations for repository browsing, issues, and ongoing discussion
             instead of generic placeholder links.
           </p>
@@ -26,7 +26,7 @@ export default function CommunityPage() {
 
         <section className="section-shell grid gap-6 pb-24 md:grid-cols-2 md:pb-32">
           {communityLinks.map((link) => (
-            <article key={link.label} className="glass-panel rounded-[32px] p-7">
+            <article key={link.label} className="glass-panel rounded-[32px] p-5 sm:p-7">
               <p className="text-xs uppercase tracking-[0.25em] text-cyan">Link</p>
               <h2 className="mt-4 text-3xl font-medium tracking-[-0.04em] text-white">{link.label}</h2>
               <p className="mt-4 text-sm leading-7 text-slate-300">{link.description}</p>
@@ -34,7 +34,7 @@ export default function CommunityPage() {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-8 inline-flex rounded-full border border-cyan/20 bg-cyan/10 px-5 py-3 text-sm font-semibold text-cyan transition hover:border-cyan/40"
+                className="mt-8 inline-flex w-full justify-center rounded-full border border-cyan/20 bg-cyan/10 px-5 py-3 text-sm font-semibold text-cyan transition hover:border-cyan/40 sm:w-auto"
               >
                 Open Link
               </a>
@@ -47,10 +47,10 @@ export default function CommunityPage() {
             <div className="absolute left-1/2 top-0 h-48 w-48 -translate-x-1/2 rounded-full bg-cyan/10 blur-3xl" />
             <div className="relative">
               <span className="eyebrow">Contributing</span>
-              <h2 className="mt-6 text-4xl font-medium tracking-[-0.05em] md:text-6xl">
+              <h2 className="mt-6 text-3xl font-medium tracking-[-0.05em] sm:text-4xl md:text-6xl">
                 Help shape the compiler, tooling, docs, and runtime direction.
               </h2>
-              <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
                 Open issues, feature requests, and repo discussions are the cleanest way to participate while
                 the ecosystem is still taking shape.
               </p>
