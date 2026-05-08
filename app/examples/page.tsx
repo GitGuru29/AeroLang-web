@@ -41,7 +41,7 @@ export default function ExamplesPage() {
                 <div>
                   <span
                     className={`rounded-full px-3 py-1 text-xs uppercase tracking-[0.2em] ${
-                      example.status === "planned"
+                      (example.status as string) === "planned"
                         ? "border border-amber-400/20 bg-amber-400/10 text-amber-200"
                         : "border border-cyan/20 bg-cyan/10 text-cyan"
                     }`}
@@ -53,7 +53,7 @@ export default function ExamplesPage() {
                 </div>
                 <span
                   className={`rounded-full px-3 py-1 text-xs uppercase tracking-[0.2em] ${
-                    example.status === "planned"
+                    (example.status as string) === "planned"
                       ? "border border-amber-400/20 bg-amber-400/10 text-amber-200"
                       : "border border-emerald-400/20 bg-emerald-400/10 text-emerald-300"
                   }`}
