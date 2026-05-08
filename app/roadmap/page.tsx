@@ -5,7 +5,7 @@ import { releaseHighlights, roadmapItems } from "@/app/site-data";
 
 export const metadata: Metadata = {
   title: "Roadmap & Release Status",
-  description: "AeroLang™ release framing, current milestone highlights, and planned roadmap items.",
+  description: "AeroLang release framing, current milestone highlights, and planned roadmap items.",
 };
 
 export default function RoadmapPage() {
@@ -18,12 +18,12 @@ export default function RoadmapPage() {
         <SiteHeader />
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Roadmap</span>
-          <h1 className="page-title mt-6 max-w-4xl font-medium tracking-[-0.06em] text-white">
-            Visible execution beats vague promises.
+          <h1 className="mt-6 max-w-4xl text-5xl font-medium tracking-[-0.06em] text-white md:text-7xl">
+            65% complete — what&apos;s shipped and what&apos;s next.
           </h1>
-          <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-            This page separates the current release baseline from future milestones so visitors can see what is
-            present now and what is still planned.
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+            The compiler, full UI framework (30+ components), Navigation API, and animation system are complete.
+            Data Persistence, Networking, and the one-command build pipeline are the next critical milestones.
           </p>
         </section>
 
@@ -33,8 +33,8 @@ export default function RoadmapPage() {
             <div className="relative">
               <div className="text-center">
                 <p className="text-xs uppercase tracking-[0.25em] text-cyan">Roadmap Tree</p>
-                <h2 className="mt-4 text-3xl font-medium tracking-[-0.05em] text-white sm:text-4xl md:text-5xl">
-                  Project growth mapped like a branching system.
+                <h2 className="mt-4 text-4xl font-medium tracking-[-0.05em] text-white md:text-5xl">
+                  From compiler foundation to full ecosystem.
                 </h2>
               </div>
 

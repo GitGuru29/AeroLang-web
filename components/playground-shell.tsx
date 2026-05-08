@@ -2,38 +2,128 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const exampleSnippets = {
-  hello: `module main
+const typeMap: Record<string, string> = {
+  Int: "int32_t",
+  Long: "int64_t",
+  Float: "float",
+  Double: "double",
+  Boolean: "bool",
+  String: "aero::String",
+  Unit: "void",
+};
 
-fun main() {
-    print("Hello AeroLang")
-}`,
-  variables: `module main
+function transpileToCpp(code: string): string {
+  const lines = code.split("\n");
+  let cpp = [
+    "#include <aerolang/Activity.h>",
+    "#include <aerolang/View.h>",
+    "#include <aerolang/String.h>",
+    "#include <cstdint>",
+    "",
+  ];
 
-fun main() {
-    let version = "0.1.0-alpha"
-    let target = "android-arm64"
+  let activityName = "MainActivity";
+  const activityMatch = code.match(/activity\s+(\w+)/);
+  if (activityMatch) activityName = activityMatch[1];
 
-    print(version)
-    print(target)
-}`,
-  functions: `module main
+  cpp.push(`class ${activityName} : public aero::Activity {`);
+  cpp.push("private:");
 
-fun add(a: Int, b: Int) -> Int {
-    return a + b
+  let inActivity = false;
+  let inFunction = false;
+
+  for (let line of lines) {
+    line = line.trim();
+    if (!line || line.startsWith("//")) continue;
+
+    if (line.startsWith("activity")) {
+      inActivity = true;
+      continue;
+    }
+
+    if (line.startsWith("var") || line.startsWith("val")) {
+      const match = line.match(/(?:var|val)\s+(\w+)\s*:\s*([\w<>]+)(?:\s*=\s*(.*))?/);
+      if (match) {
+        const [, name, type, init] = match;
+        const mappedType = typeMap[type] || `aero::${type}`;
+        let cppLine = `    ${mappedType} ${name}`;
+        if (init) {
+          cppLine += ` = ${init.replace(/"/g, 'aero::String("') + '")'}`;
+        }
+        cpp.push(cppLine + ";");
+      }
+      continue;
+    }
+
+    if (line.startsWith("fun")) {
+      if (!inFunction) {
+        cpp.push("");
+        cpp.push("public:");
+        inFunction = true;
+      }
+      const match = line.match(/fun\s+(\w+)\((.*)\)(?:\s*->\s*(\w+))?/);
+      if (match) {
+        const [, name, params, ret] = match;
+        const mappedRet = typeMap[ret || "Unit"] || "void";
+        cpp.push(`    ${mappedRet} ${name}(${params}) {`);
+      }
+      continue;
+    }
+
+    if (line === "}" && inFunction) {
+      cpp.push("    }");
+      inFunction = false;
+      continue;
+    }
+
+    if (line === "}" && inActivity) {
+      inActivity = false;
+      continue;
+    }
+
+    if (inFunction) {
+      // Basic statement mapping
+      let stmt = line.replace(/showToast\(/g, "aero::Toast::show(");
+      cpp.push(`        ${stmt};`);
+    }
+  }
+
+  cpp.push("};");
+  cpp.push("");
+  cpp.push(`AERO_REGISTER_ACTIVITY(${activityName})`);
+
+  return cpp.join("\n");
 }
 
-fun main() {
-    print(add(7, 5))
+const exampleSnippets = {
+  hello: `activity HelloWorld {
+    fun onCreate() {
+        showToast("Hello AeroLang")
+    }
 }`,
-  android: `module app
+  variables: `activity VarDemo {
+    var version: String = "0.1.0-alpha"
+    var count: Int = 10
 
-fun main() {
-    let device = Android.current()
-    let engine = Aero.init(device)
+    fun onCreate() {
+        showToast(version)
+    }
+}`,
+  functions: `activity Calc {
+    fun add(a: Int, b: Int) -> Int {
+        return a + b
+    }
 
-    engine.launch {
-        print("Booting on " + device.model)
+    fun onCreate() {
+        var x = add(7, 5)
+    }
+}`,
+  android: `activity SensorApp {
+    var sensors: SensorManager
+
+    fun onCreate() {
+        sensors = SensorManager()
+        showToast("Booting native sensors")
     }
 }`,
 } as const;
@@ -111,8 +201,7 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
     setStatus("Running...");
 
     const lines = code.split("\n");
-    const hasPrint = code.includes("print(");
-    const hasAndroid = code.includes("Android.current()");
+    const hasAndroid = code.includes("SensorManager");
     const tokenCount = code
       .replace(/[^\w]+/g, " ")
       .trim()
@@ -123,11 +212,13 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
       setStatus("Execution Complete");
       setOutput([
         "[compiler] Build target: android-arm64",
-        `[compiler] Lines analyzed: ${lines.length}`,
+        "[compiler] Running transpiler...",
+        "[compiler] Emitting C++...",
         `[compiler] Tokens emitted: ${tokenCount}`,
-        hasAndroid ? "[runtime] Android bridge initialized" : "[runtime] Standard runtime initialized",
-        hasPrint ? '[stdout] "Hello AeroLang"' : "[stdout] Execution finished",
+        hasAndroid ? "[runtime] SensorManager cached" : "[runtime] Standard runtime initialized",
+        "[stdout] \"AeroLang Execution Finished\"",
       ]);
+      setActivePanel("compile");
     }, 640);
   }
 
@@ -174,17 +265,19 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
       .split(/\s+/)
       .filter(Boolean).length;
 
+    const transpiled = transpileToCpp(code);
+
     return {
       errors: code.trim().length === 0 ? ["editor is empty"] : ["no syntax errors detected"],
       tokens: [`${tokenCount} tokens`, `${lines.length} lines`, `${selectedExample} example loaded`],
-      ast: ["Module(main)", "Function(main)", "Call(print)"],
-      compile: [status, "target android-arm64", "optimizer: release-safe"],
+      ast: ["Module(main)", "ActivityDeclaration", "Function(onCreate)"],
+      compile: transpiled.split("\n"),
     };
   }, [code, selectedExample, status]);
 
   return (
-    <div className="playground-shell glass-panel min-w-0 overflow-hidden rounded-[32px] border border-white/12 bg-[#06101d]/80 shadow-glow">
-      <div className="flex flex-col gap-4 border-b border-white/10 px-4 py-4 sm:px-5 lg:flex-row lg:items-center lg:justify-between">
+    <div className="glass-panel overflow-hidden rounded-[32px] border border-white/12 bg-[#06101d]/80 shadow-glow">
+      <div className="flex flex-col gap-4 border-b border-white/10 px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <p className="text-sm uppercase tracking-[0.25em] text-cyan">AeroLang Playground</p>
           <p className="mt-2 text-sm text-slate-400">Serious editor workflow with compiler logs and runtime output.</p>
@@ -192,120 +285,113 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
             Simulated runtime in-browser. Use the VS Code workflow for compiler-backed APK generation.
           </p>
         </div>
-        <div className="flex w-full flex-wrap gap-2 lg:w-auto lg:justify-end">
+        <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={handleRun}
-            className="w-full rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-[#7ce9ff] sm:w-auto"
+            className="rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-[#7ce9ff]"
           >
             Run
           </button>
           <button
             type="button"
             onClick={handleClear}
-            className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-cyan/30 sm:w-auto"
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-cyan/30"
           >
             Clear
           </button>
           <button
             type="button"
             onClick={handleCopy}
-            className="w-full rounded-full border border-cyan/20 bg-cyan/10 px-4 py-2 text-sm font-semibold text-cyan transition hover:border-cyan/40 sm:w-auto"
+            className="rounded-full border border-cyan/20 bg-cyan/10 px-4 py-2 text-sm font-semibold text-cyan transition hover:border-cyan/40"
           >
             Copy
           </button>
           <button
             type="button"
             onClick={handleShare}
-            className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-cyan/30 sm:w-auto"
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-cyan/30"
           >
             {shareState === "copied" ? "URL Copied" : "Share"}
           </button>
           <button
             type="button"
             onClick={handleExport}
-            className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-cyan/30 sm:w-auto"
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-cyan/30"
           >
             Export .aero
           </button>
         </div>
       </div>
 
-      <div className="border-b border-white/10 px-4 py-4 sm:px-5">
+      <div className="border-b border-white/10 px-5 py-4">
         <div className="flex flex-wrap gap-2">
           {exampleMeta.map((example) => (
             <button
               key={example.key}
               type="button"
               onClick={() => handleLoadExample(example.key)}
-              className={`rounded-full px-3 py-1.5 text-sm transition ${
-                selectedExample === example.key
-                  ? "bg-cyan/10 text-cyan"
-                  : "border border-white/10 bg-white/[0.03] text-slate-300 hover:border-cyan/20"
-              }`}
+              className={`rounded-full px-3 py-1.5 text-sm transition ${selectedExample === example.key
+                ? "bg-cyan/10 text-cyan"
+                : "border border-white/10 bg-white/[0.03] text-slate-300 hover:border-cyan/20"
+                }`}
             >
               {example.label}
             </button>
           ))}
-          <span className="w-full rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-center text-xs uppercase tracking-[0.22em] text-emerald-300 sm:ml-auto sm:w-auto">
+          <span className="ml-auto rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-xs uppercase tracking-[0.22em] text-emerald-300">
             {status}
           </span>
         </div>
       </div>
 
-      <div className={`grid min-w-0 ${compact ? "xl:grid-cols-[1.2fr_0.8fr]" : "xl:grid-cols-[1.35fr_0.65fr]"}`}>
-        <div className="min-w-0 border-b border-white/10 xl:border-b-0 xl:border-r xl:border-white/10">
-          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 text-xs uppercase tracking-[0.25em] text-slate-500 sm:px-5">
+      <div className={`grid ${compact ? "xl:grid-cols-[1.2fr_0.8fr]" : "xl:grid-cols-[1.35fr_0.65fr]"}`}>
+        <div className="border-b border-white/10 xl:border-b-0 xl:border-r xl:border-white/10">
+          <div className="flex items-center justify-between border-b border-white/10 px-5 py-3 text-xs uppercase tracking-[0.25em] text-slate-500">
             <span>{selectedExample}.aero</span>
             <span>Editor</span>
           </div>
-          <div className="bg-[linear-gradient(180deg,rgba(20,156,255,0.06),transparent_24%)] p-3 sm:p-4">
+          <div className="bg-[linear-gradient(180deg,rgba(20,156,255,0.06),transparent_24%)] p-4">
             <textarea
               value={code}
               onChange={(event) => setCode(event.target.value)}
               spellCheck={false}
-              className={`min-h-[260px] w-full resize-none rounded-[20px] border border-white/10 bg-[#040b14] p-4 font-mono text-sm leading-6 text-slate-200 outline-none transition focus:border-cyan/30 sm:min-h-[300px] sm:rounded-[24px] sm:p-5 sm:leading-7 ${
-                compact ? "xl:min-h-[260px]" : "xl:min-h-[420px]"
-              }`}
+              className={`min-h-[300px] w-full resize-none rounded-[24px] border border-white/10 bg-[#040b14] p-5 font-mono text-sm leading-7 text-slate-200 outline-none transition focus:border-cyan/30 ${compact ? "xl:min-h-[260px]" : "xl:min-h-[420px]"
+                }`}
             />
           </div>
         </div>
 
-        <div className="grid min-w-0">
+        <div className="grid">
           <div className="border-b border-white/10">
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 text-xs uppercase tracking-[0.25em] text-slate-500 sm:px-5">
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3 text-xs uppercase tracking-[0.25em] text-slate-500">
               <span>Output</span>
               <span>Terminal</span>
             </div>
-            <div className={`space-y-3 overflow-x-auto bg-[#030811] p-4 font-mono text-sm text-slate-300 sm:p-5 ${compact ? "min-h-[220px]" : "min-h-[280px]"}`}>
+            <div className={`space-y-3 bg-[#030811] p-5 font-mono text-sm text-slate-300 ${compact ? "min-h-[220px]" : "min-h-[280px]"}`}>
               {output.map((line, index) => (
-                <div key={`${index}-${line}`} className="min-w-0 break-words">
-                  {line}
-                </div>
+                <div key={`${index}-${line}`}>{line}</div>
               ))}
             </div>
           </div>
 
           <div>
-            <div className="flex flex-wrap gap-2 border-b border-white/10 px-4 py-3 sm:px-5">
+            <div className="flex flex-wrap gap-2 border-b border-white/10 px-5 py-3">
               {(["compile", "tokens", "ast", "errors"] as Panel[]).map((panel) => (
                 <button
                   key={panel}
                   type="button"
                   onClick={() => setActivePanel(panel)}
-                  className={`rounded-full px-3 py-1 text-xs uppercase tracking-[0.22em] transition ${
-                    activePanel === panel ? "bg-cyan/10 text-cyan" : "text-slate-500 hover:text-slate-300"
-                  }`}
+                  className={`rounded-full px-3 py-1 text-xs uppercase tracking-[0.22em] transition ${activePanel === panel ? "bg-cyan/10 text-cyan" : "text-slate-500 hover:text-slate-300"
+                    }`}
                 >
                   {panel}
                 </button>
               ))}
             </div>
-            <div className="space-y-2 overflow-x-auto bg-[#040a12] px-4 py-4 font-mono text-xs text-slate-400 sm:px-5">
+            <div className="space-y-2 bg-[#040a12] px-5 py-4 font-mono text-xs text-slate-400">
               {diagnostics[activePanel].map((item) => (
-                <div key={item} className="break-words">
-                  {item}
-                </div>
+                <div key={item}>{item}</div>
               ))}
             </div>
           </div>
