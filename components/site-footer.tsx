@@ -24,7 +24,7 @@ export function SiteFooter() {
                 and a buildable ecosystem surface.
               </p>
               <div className="mt-6 flex flex-wrap gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
-                <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">v0.1.0-alpha</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">v0.2.0-alpha</span>
                 <span className="rounded-full border border-cyan/20 bg-cyan/10 px-3 py-1.5 text-cyan">Experimental</span>
               </div>
             </div>
