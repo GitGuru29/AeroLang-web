@@ -91,7 +91,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-5 flex flex-wrap gap-3 text-sm text-slate-300">
-                  <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">v0.1.0-alpha</span>
+                  <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">v0.2.0-alpha</span>
                   <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-emerald-300">
                     Status: Active Build
                   </span>
