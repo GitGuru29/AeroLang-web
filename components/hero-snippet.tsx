@@ -5,36 +5,36 @@ import { useEffect, useMemo, useState } from "react";
 const snippets = [
   {
     tab: "main.aero",
-    label: "Boot sequence",
+    label: "Activity entry",
     lines: [
-      { text: "module", className: "text-cyan" },
-      { text: " app", className: "text-white" },
-      { text: "\n\nfun", className: "text-cyan" },
-      { text: " main", className: "text-white" },
-      { text: "() {\n", className: "text-slate-300" },
-      { text: "    let", className: "text-cyan" },
-      { text: " engine", className: "text-white" },
-      { text: " = ", className: "text-slate-400" },
-      { text: "Aero.init(Android.current())", className: "text-sky-300" },
-      { text: "\n    engine.launch {\n", className: "text-slate-300" },
-      { text: '        print("Hello AeroLang")', className: "text-emerald-300" },
-      { text: "\n    }\n}", className: "text-slate-300" },
+      { text: "activity", className: "text-cyan" },
+      { text: " SensorApp", className: "text-white" },
+      { text: " {\n    var", className: "text-cyan" },
+      { text: " sensors: ", className: "text-white" },
+      { text: "SensorManager", className: "text-sky-300" },
+      { text: "\n\n    fun", className: "text-cyan" },
+      { text: " onCreate", className: "text-white" },
+      { text: "() {\n        sensors = ", className: "text-slate-300" },
+      { text: "SensorManager()", className: "text-sky-300" },
+      { text: "\n        showToast(", className: "text-slate-300" },
+      { text: '"Ready"', className: "text-emerald-300" },
+      { text: ")\n    }\n}", className: "text-slate-300" },
     ],
   },
   {
-    tab: "app.aero",
+    tab: "ui.aero",
     label: "Native UI",
     lines: [
-      { text: "screen", className: "text-cyan" },
-      { text: " Home", className: "text-white" },
-      { text: " {\n", className: "text-slate-300" },
-      { text: "    column", className: "text-cyan" },
-      { text: " {\n", className: "text-slate-300" },
-      { text: '        text("AeroLang UI")', className: "text-emerald-300" },
-      { text: "\n        ", className: "text-slate-300" },
-      { text: "button", className: "text-cyan" },
-      { text: '("Deploy")', className: "text-white" },
-      { text: "\n    }\n}", className: "text-slate-300" },
+      { text: "fun", className: "text-cyan" },
+      { text: " setupUI", className: "text-white" },
+      { text: "() {\n    val", className: "text-cyan" },
+      { text: " layout = ", className: "text-white" },
+      { text: "LinearLayout(Orientation::VERTICAL)", className: "text-sky-300" },
+      { text: "\n    layout.addView(", className: "text-slate-300" },
+      { text: "TextView(", className: "text-sky-300" },
+      { text: '"AeroLang"', className: "text-emerald-300" },
+      { text: ")", className: "text-sky-300" },
+      { text: ")\n    setContentView(layout)\n}", className: "text-slate-300" },
     ],
   },
   {
@@ -45,13 +45,13 @@ const snippets = [
       { text: " android-arm64", className: "text-sky-300" },
       { text: "\n", className: "text-slate-300" },
       { text: "optimize", className: "text-cyan" },
-      { text: " release", className: "text-white" },
+      { text: " release-safe", className: "text-white" },
       { text: "\n", className: "text-slate-300" },
-      { text: "package", className: "text-cyan" },
-      { text: ' "app.aero"', className: "text-emerald-300" },
+      { text: "source", className: "text-cyan" },
+      { text: ' "examples/HelloWorld.aero"', className: "text-emerald-300" },
       { text: "\n", className: "text-slate-300" },
       { text: "emit", className: "text-cyan" },
-      { text: " apk", className: "text-white" },
+      { text: " native-apk", className: "text-white" },
     ],
   },
 ];
@@ -106,9 +106,8 @@ export function HeroSnippet() {
                 key={snippet.tab}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`rounded-full px-2 py-1 transition ${
-                  index === activeIndex ? "bg-cyan/10 text-cyan" : "text-slate-500 hover:text-slate-300"
-                }`}
+                className={`rounded-full px-2 py-1 transition ${index === activeIndex ? "bg-cyan/10 text-cyan" : "text-slate-500 hover:text-slate-300"
+                  }`}
               >
                 {snippet.tab}
               </button>

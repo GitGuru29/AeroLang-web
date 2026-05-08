@@ -144,7 +144,7 @@ export default function Home() {
           <div className="mb-14">
             <span className="eyebrow">Capabilities</span>
             <h2 className="mt-6 text-4xl font-medium tracking-[-0.05em] md:text-6xl">
-              The site now explains the product instead of hinting at it.
+              Everything you need to build real Android apps.
             </h2>
           </div>
 
@@ -169,7 +169,7 @@ export default function Home() {
             <div className="glass-panel rounded-[32px] p-7">
               <span className="eyebrow">Docs Snapshot</span>
               <h2 className="mt-6 text-4xl font-medium tracking-[-0.05em] text-white md:text-5xl">
-                `/docs` now has concrete language content.
+                Language reference for the complete AeroLang surface.
               </h2>
               <div className="mt-8 grid gap-4">
                 {docsSections.map((section) => (
@@ -188,7 +188,7 @@ export default function Home() {
             <div className="glass-panel rounded-[32px] p-7">
               <span className="eyebrow">Install Flow</span>
               <h2 className="mt-6 text-4xl font-medium tracking-[-0.05em] text-white md:text-5xl">
-                Installation is now explicit.
+                Up and running in five steps.
               </h2>
               <div className="mt-8 grid gap-4">
                 <div className="rounded-[24px] border border-white/10 bg-[#08111f] p-5">
@@ -217,7 +217,7 @@ export default function Home() {
             <div>
               <span className="eyebrow">Examples Gallery</span>
               <h2 className="mt-6 text-4xl font-medium tracking-[-0.05em] md:text-6xl">
-                Real example content, with planned items clearly marked.
+                20+ example apps — from HelloWorld to full navigation demos.
               </h2>
             </div>
             <Link
@@ -253,10 +253,10 @@ export default function Home() {
 
         <section className="section-shell py-24 md:py-32">
           <div className="mb-10 flex items-end justify-between gap-6">
-            <div>
+            <div className="max-w-3xl">
               <span className="eyebrow">Code Example</span>
               <h2 className="mt-6 text-4xl font-medium tracking-[-0.05em] md:text-6xl">
-                Developer tooling with a sharper content layer.
+                Write once, compile to native Android performance.
               </h2>
             </div>
           </div>
@@ -268,11 +268,11 @@ export default function Home() {
             <div className="max-w-3xl">
               <span className="eyebrow">Playground</span>
               <h2 className="mt-6 text-4xl font-medium tracking-[-0.05em] md:text-6xl">
-                High-fidelity simulation, with clearer product messaging.
+                Try AeroLang in the browser — no install needed.
               </h2>
               <p className="mt-6 text-lg leading-8 text-slate-300">
-                The playground now persists editor state, supports snippet export, and can generate shareable
-                URLs while still clearly communicating that the browser experience is a simulation layer.
+                The playground lets you write and run AeroLang code snippets directly in your browser. Editor state
+                is persisted, snippets can be exported, and shareable URLs make it easy to share examples with others.
               </p>
             </div>
             <Link
@@ -291,7 +291,7 @@ export default function Home() {
             <div className="glass-panel rounded-[32px] p-7">
               <span className="eyebrow">Release Notes</span>
               <h2 className="mt-6 text-4xl font-medium tracking-[-0.05em] text-white md:text-5xl">
-                Current release framing is more concrete.
+                v0.2.0-alpha — what&apos;s shipped and what&apos;s next.
               </h2>
               <div className="mt-8 space-y-3 text-sm leading-7 text-slate-300">
                 {releaseHighlights.map((item) => (

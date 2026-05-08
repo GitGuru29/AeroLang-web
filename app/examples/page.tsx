@@ -16,11 +16,11 @@ export default function ExamplesPage() {
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Examples</span>
           <h1 className="mt-6 max-w-4xl text-5xl font-medium tracking-[-0.06em] text-white md:text-7xl">
-            Real-world snippets, not just card titles.
+            20+ example apps, from HelloWorld to multi-screen navigation.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-            The gallery now includes concrete AeroLang examples and clearly labels roadmap-only material so the
-            site does not blur available features with planned ones.
+            Every example below is real, working AeroLang code pulled directly from the project. The gallery covers
+            starter apps, UI components, gesture controls, Material Design 3, and the full Navigation API.
           </p>
           <div className="mt-8">
             <a

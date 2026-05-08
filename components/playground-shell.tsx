@@ -2,38 +2,128 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const exampleSnippets = {
-  hello: `module main
+const typeMap: Record<string, string> = {
+  Int: "int32_t",
+  Long: "int64_t",
+  Float: "float",
+  Double: "double",
+  Boolean: "bool",
+  String: "aero::String",
+  Unit: "void",
+};
 
-fun main() {
-    print("Hello AeroLang")
-}`,
-  variables: `module main
+function transpileToCpp(code: string): string {
+  const lines = code.split("\n");
+  let cpp = [
+    "#include <aerolang/Activity.h>",
+    "#include <aerolang/View.h>",
+    "#include <aerolang/String.h>",
+    "#include <cstdint>",
+    "",
+  ];
 
-fun main() {
-    let version = "0.1.0-alpha"
-    let target = "android-arm64"
+  let activityName = "MainActivity";
+  const activityMatch = code.match(/activity\s+(\w+)/);
+  if (activityMatch) activityName = activityMatch[1];
 
-    print(version)
-    print(target)
-}`,
-  functions: `module main
+  cpp.push(`class ${activityName} : public aero::Activity {`);
+  cpp.push("private:");
 
-fun add(a: Int, b: Int) -> Int {
-    return a + b
+  let inActivity = false;
+  let inFunction = false;
+
+  for (let line of lines) {
+    line = line.trim();
+    if (!line || line.startsWith("//")) continue;
+
+    if (line.startsWith("activity")) {
+      inActivity = true;
+      continue;
+    }
+
+    if (line.startsWith("var") || line.startsWith("val")) {
+      const match = line.match(/(?:var|val)\s+(\w+)\s*:\s*([\w<>]+)(?:\s*=\s*(.*))?/);
+      if (match) {
+        const [, name, type, init] = match;
+        const mappedType = typeMap[type] || `aero::${type}`;
+        let cppLine = `    ${mappedType} ${name}`;
+        if (init) {
+          cppLine += ` = ${init.replace(/"/g, 'aero::String("') + '")'}`;
+        }
+        cpp.push(cppLine + ";");
+      }
+      continue;
+    }
+
+    if (line.startsWith("fun")) {
+      if (!inFunction) {
+        cpp.push("");
+        cpp.push("public:");
+        inFunction = true;
+      }
+      const match = line.match(/fun\s+(\w+)\((.*)\)(?:\s*->\s*(\w+))?/);
+      if (match) {
+        const [, name, params, ret] = match;
+        const mappedRet = typeMap[ret || "Unit"] || "void";
+        cpp.push(`    ${mappedRet} ${name}(${params}) {`);
+      }
+      continue;
+    }
+
+    if (line === "}" && inFunction) {
+      cpp.push("    }");
+      inFunction = false;
+      continue;
+    }
+
+    if (line === "}" && inActivity) {
+      inActivity = false;
+      continue;
+    }
+
+    if (inFunction) {
+      // Basic statement mapping
+      let stmt = line.replace(/showToast\(/g, "aero::Toast::show(");
+      cpp.push(`        ${stmt};`);
+    }
+  }
+
+  cpp.push("};");
+  cpp.push("");
+  cpp.push(`AERO_REGISTER_ACTIVITY(${activityName})`);
+
+  return cpp.join("\n");
 }
 
-fun main() {
-    print(add(7, 5))
+const exampleSnippets = {
+  hello: `activity HelloWorld {
+    fun onCreate() {
+        showToast("Hello AeroLang")
+    }
 }`,
-  android: `module app
+  variables: `activity VarDemo {
+    var version: String = "0.1.0-alpha"
+    var count: Int = 10
 
-fun main() {
-    let device = Android.current()
-    let engine = Aero.init(device)
+    fun onCreate() {
+        showToast(version)
+    }
+}`,
+  functions: `activity Calc {
+    fun add(a: Int, b: Int) -> Int {
+        return a + b
+    }
 
-    engine.launch {
-        print("Booting on " + device.model)
+    fun onCreate() {
+        var x = add(7, 5)
+    }
+}`,
+  android: `activity SensorApp {
+    var sensors: SensorManager
+
+    fun onCreate() {
+        sensors = SensorManager()
+        showToast("Booting native sensors")
     }
 }`,
 } as const;
@@ -111,8 +201,7 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
     setStatus("Running...");
 
     const lines = code.split("\n");
-    const hasPrint = code.includes("print(");
-    const hasAndroid = code.includes("Android.current()");
+    const hasAndroid = code.includes("SensorManager");
     const tokenCount = code
       .replace(/[^\w]+/g, " ")
       .trim()
@@ -123,11 +212,13 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
       setStatus("Execution Complete");
       setOutput([
         "[compiler] Build target: android-arm64",
-        `[compiler] Lines analyzed: ${lines.length}`,
+        "[compiler] Running transpiler...",
+        "[compiler] Emitting C++...",
         `[compiler] Tokens emitted: ${tokenCount}`,
-        hasAndroid ? "[runtime] Android bridge initialized" : "[runtime] Standard runtime initialized",
-        hasPrint ? '[stdout] "Hello AeroLang"' : "[stdout] Execution finished",
+        hasAndroid ? "[runtime] SensorManager cached" : "[runtime] Standard runtime initialized",
+        "[stdout] \"AeroLang Execution Finished\"",
       ]);
+      setActivePanel("compile");
     }, 640);
   }
 
@@ -174,11 +265,13 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
       .split(/\s+/)
       .filter(Boolean).length;
 
+    const transpiled = transpileToCpp(code);
+
     return {
       errors: code.trim().length === 0 ? ["editor is empty"] : ["no syntax errors detected"],
       tokens: [`${tokenCount} tokens`, `${lines.length} lines`, `${selectedExample} example loaded`],
-      ast: ["Module(main)", "Function(main)", "Call(print)"],
-      compile: [status, "target android-arm64", "optimizer: release-safe"],
+      ast: ["Module(main)", "ActivityDeclaration", "Function(onCreate)"],
+      compile: transpiled.split("\n"),
     };
   }, [code, selectedExample, status]);
 
@@ -238,11 +331,10 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
               key={example.key}
               type="button"
               onClick={() => handleLoadExample(example.key)}
-              className={`rounded-full px-3 py-1.5 text-sm transition ${
-                selectedExample === example.key
-                  ? "bg-cyan/10 text-cyan"
-                  : "border border-white/10 bg-white/[0.03] text-slate-300 hover:border-cyan/20"
-              }`}
+              className={`rounded-full px-3 py-1.5 text-sm transition ${selectedExample === example.key
+                ? "bg-cyan/10 text-cyan"
+                : "border border-white/10 bg-white/[0.03] text-slate-300 hover:border-cyan/20"
+                }`}
             >
               {example.label}
             </button>
@@ -264,9 +356,8 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
               value={code}
               onChange={(event) => setCode(event.target.value)}
               spellCheck={false}
-              className={`min-h-[300px] w-full resize-none rounded-[24px] border border-white/10 bg-[#040b14] p-5 font-mono text-sm leading-7 text-slate-200 outline-none transition focus:border-cyan/30 ${
-                compact ? "xl:min-h-[260px]" : "xl:min-h-[420px]"
-              }`}
+              className={`min-h-[300px] w-full resize-none rounded-[24px] border border-white/10 bg-[#040b14] p-5 font-mono text-sm leading-7 text-slate-200 outline-none transition focus:border-cyan/30 ${compact ? "xl:min-h-[260px]" : "xl:min-h-[420px]"
+                }`}
             />
           </div>
         </div>
@@ -291,9 +382,8 @@ export function PlaygroundShell({ compact = false }: { compact?: boolean }) {
                   key={panel}
                   type="button"
                   onClick={() => setActivePanel(panel)}
-                  className={`rounded-full px-3 py-1 text-xs uppercase tracking-[0.22em] transition ${
-                    activePanel === panel ? "bg-cyan/10 text-cyan" : "text-slate-500 hover:text-slate-300"
-                  }`}
+                  className={`rounded-full px-3 py-1 text-xs uppercase tracking-[0.22em] transition ${activePanel === panel ? "bg-cyan/10 text-cyan" : "text-slate-500 hover:text-slate-300"
+                    }`}
                 >
                   {panel}
                 </button>

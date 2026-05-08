@@ -16,11 +16,11 @@ export default function DocsPage() {
         <section className="section-shell py-12 md:py-16">
           <span className="eyebrow">Documentation</span>
           <h1 className="mt-6 max-w-4xl text-5xl font-medium tracking-[-0.06em] text-white md:text-7xl">
-            Syntax, Android APIs, and installation in one place.
+            Language reference for the complete AeroLang surface.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-            This page converts the original placeholder docs area into a real documentation surface. Claims are
-            framed as current direction unless they are demonstrably shipping today.
+            Documentation covering why AeroLang exists, the full syntax guide, the 30+ component UI framework, Navigation API,
+            Gesture system, Collections library, and Android platform integrations.
           </p>
         </section>
 
